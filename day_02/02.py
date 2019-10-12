@@ -10,8 +10,7 @@ for line in lines:
     # Would be more efficient if
     # the counter short-circuits on
     # finding both 3s and 2s
-    c = Counter(line)
-    counts = dict(c.most_common()).values()
+    counts = Counter(line).values()
     if 3 in counts:
         threes +=1
     if 2 in counts:
