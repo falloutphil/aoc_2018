@@ -54,7 +54,7 @@ int main()
         cycle_iterator<vector<int>::const_iterator>(begin(freqs),
                                                     end(freqs));
 
-    int cs = 0;
+    int cs = *cycle++;
     map<int,bool> counter;
 
     while(!counter.count(cs))
