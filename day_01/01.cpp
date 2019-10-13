@@ -44,32 +44,27 @@ int main()
     copy(input, std::istream_iterator<int>(),
          back_inserter(freqs));
 
-    //for (const auto i: freqs)
-    //    cout << i << ' ';
-
     int result = accumulate(begin(freqs),
                             end(freqs),
                             0, plus<int>());
 
     cout << result << endl;
 
-     auto cycle =
+    auto cycle =
         cycle_iterator<vector<int>::const_iterator>(begin(freqs),
                                                     end(freqs));
 
     int cs = 0;
+    typedef map<int,bool> hash;
+    hash counter;
 
-    for(int i=0;i<1040;i++)
+    while(!counter.count(cs))
     {
-        cout << *cycle << ' ';
-        ++cycle;
+        counter[cs] = true;
+        cs += *cycle++;;
     }
 
-    //int result2 = accumulate(cycle,
-    //                        end(freqs),
-    //                        0, plus<int>());
-
-
+    cout << cs << endl;
 
     return 0;
 }

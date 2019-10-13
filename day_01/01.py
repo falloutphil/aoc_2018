@@ -7,7 +7,7 @@ print(sum(freqs))
 
 c = Counter()
 for i in accumulate(cycle(freqs)):
-    if c[i] > 0:
+    if c[i]:
         print(i)
         break
-    c[i] += 1
+    c[i] = True
