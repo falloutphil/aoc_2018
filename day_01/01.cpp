@@ -1,11 +1,11 @@
-#include <algorithm>
-#include <numeric>
-#include <iterator>
-#include <vector>
-#include <map>
 #include <fstream>
 #include <iostream>
+#include <numeric>
+#include <vector>
+#include <map>
 #include <boost/iterator/iterator_adaptor.hpp>
+
+// hint: g++ 01.cpp -O2 -o cpp01
 
 using namespace std;
 
