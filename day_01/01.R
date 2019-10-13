@@ -5,16 +5,16 @@ print(sum(freqs))
 
 first_digit <- freqs[1]
 freqs_len <- length(freqs)
-c <- list()
+hash = new.env(hash = TRUE, parent = emptyenv())
 i <- 1
 cs <- freqs[1]
 repeat {
     k <- as.character(cs)
-    if (!is.null(c[[k]])) {
+    if (!is.null(hash[[k]])) {
         print(cs)
         break
     }
-    c[[k]] <- TRUE
+    hash[[k]] <- TRUE
     i <- i + 1
     if (i > freqs_len)
         i <- 1
