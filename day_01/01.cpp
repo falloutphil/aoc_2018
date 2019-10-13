@@ -2,10 +2,12 @@
 #include <iostream>
 #include <numeric>
 #include <vector>
-#include <map>
+#include <unordered_map>
 #include <boost/iterator/iterator_adaptor.hpp>
 
 // hint: g++ 01.cpp -O2 -o cpp01
+
+// Runs in ~0.01s
 
 using namespace std;
 
@@ -55,7 +57,8 @@ int main()
                                                     end(freqs));
 
     int cs = *cycle++;
-    map<int,bool> counter;
+    unordered_map<int,bool> counter;
+    counter.reserve(150000);
 
     while(!counter.count(cs))
     {

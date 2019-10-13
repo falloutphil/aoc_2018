@@ -3,6 +3,8 @@
 freqs <-read.table("input.txt")$V1
 print(sum(freqs))
 
+# Runs in ~1.03s
+
 first_digit <- freqs[1]
 freqs_len <- length(freqs)
 hash = new.env(parent = emptyenv(), size=150000L)

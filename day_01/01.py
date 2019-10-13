@@ -2,6 +2,8 @@
 from itertools import cycle, accumulate
 from collections import Counter
 
+# Runs in ~0.09s
+
 freqs = [int(i) for i in open('input.txt')]
 print(sum(freqs))
 
