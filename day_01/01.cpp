@@ -41,7 +41,7 @@ int main()
     vector<int> freqs;
     ifstream ifs("input.txt", ifstream::in);
     istream_iterator<int> input(ifs);
-    copy(input, std::istream_iterator<int>(),
+    copy(input, istream_iterator<int>(),
          back_inserter(freqs));
 
     int result = accumulate(begin(freqs),
