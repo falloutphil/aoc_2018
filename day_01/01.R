@@ -5,7 +5,7 @@ print(sum(freqs))
 
 first_digit <- freqs[1]
 freqs_len <- length(freqs)
-hash = new.env(hash = TRUE, parent = emptyenv())
+hash = new.env(parent = emptyenv(), size=150000L)
 i <- 1
 cs <- freqs[1]
 repeat {
