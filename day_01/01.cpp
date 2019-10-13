@@ -55,8 +55,7 @@ int main()
                                                     end(freqs));
 
     int cs = 0;
-    typedef map<int,bool> hash;
-    hash counter;
+    map<int,bool> counter;
 
     while(!counter.count(cs))
     {
