@@ -9,6 +9,7 @@ hash = new.env(parent = emptyenv(), size=150000L)
 i <- 1
 cs <- freqs[1]
 repeat {
+    # It would be better to use the int as a hash!
     k <- as.character(cs)
     if (!is.null(hash[[k]])) {
         print(cs)
