@@ -4,15 +4,19 @@ freqs <-read.table("input.txt")$V1
 print(sum(freqs))
 
 first_digit <- freqs[1]
-cs <- cumsum(freqs)
-# Inefficient - it works in chunks of size freqs
-# where it should sample one-by-one
+freqs_len <- length(freqs)
+c <- list()
+i <- 1
+cs <- freqs[1]
 repeat {
-    dup <- anyDuplicated(cs)
-    if (dup) {
-        print(cs[dup])
+    k <- as.character(cs)
+    if (!is.null(c[[k]])) {
+        print(cs)
         break
     }
-    freqs[1] <- first_digit + cs[length(cs)]
-    cs <- c(cs, cumsum(freqs))
+    c[[k]] <- TRUE
+    i <- i + 1
+    if (i > freqs_len)
+        i <- 1
+    cs <- cs + freqs[i]
 }
