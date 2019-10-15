@@ -20,12 +20,12 @@
         <xsl:param name="cs" select="0" as="xs:integer"/>
         <xsl:param name="i" select="1" as="xs:integer"/>
         <xsl:variable name="new-cs" select="$cs + $freqs[$i]" as="xs:integer"/>
-        <xsl:variable name="new-i" select="if ($i >= count($freqs)) then 1 else $i + 1" as="xs:integer"/>
         <xsl:choose>
             <xsl:when test="map:contains($cs-hash, $new-cs)">
                 <xsl:value-of select="$new-cs"/>
             </xsl:when>
             <xsl:otherwise>
+                <xsl:variable name="new-i" select="if ($i >= count($freqs)) then 1 else $i + 1" as="xs:integer"/>
                 <xsl:call-template name="find-repeated-cs">
                     <xsl:with-param name="freqs" select="$freqs"/>
                     <xsl:with-param name="cs-hash" select="map:put($cs-hash,$new-cs,true())"/>
