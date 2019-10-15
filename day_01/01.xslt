@@ -16,8 +16,8 @@
         <xsl:param name="i" as="xs:integer"/>
         <xsl:variable name="new-cs" select="$cs + $freqs[$i]" as="xs:integer"/>
         <xsl:variable name="new-i" select="if ($i >= count($freqs))
-                                                   then 1 
-                                                   else $i + 1" as="xs:integer"/>
+                                           then 1 
+                                           else $i + 1" as="xs:integer"/>
         <xsl:sequence select="if (map:contains($cs-hash, $new-cs))
                               then $new-cs
                               else aoc2018:find-repeated-cs($freqs, map:put($cs-hash,$new-cs,true()), $new-cs, $new-i)"/>
