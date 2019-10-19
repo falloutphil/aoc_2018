@@ -1,9 +1,9 @@
 #!/usr/bin/env Rscript
 
+# Runs in ~1.03s
+
 freqs <-read.table("input.txt")$V1
 print(sum(freqs))
-
-# Runs in ~1.03s
 
 first_digit <- freqs[1]
 freqs_len <- length(freqs)
