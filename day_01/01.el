@@ -2,8 +2,6 @@
 
 ;; Runs in ~0.12 secs
 
-(require 'seq)
-
 (with-temp-buffer
   (insert-file-contents "input.txt")
   (let ((freqs (mapcar
