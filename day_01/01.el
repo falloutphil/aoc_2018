@@ -3,6 +3,9 @@
 
 (with-temp-buffer
   (insert-file-contents "input.txt")
-  (print (seq-reduce
-          (lambda (x y) (+ x (string-to-number y)))
-          (split-string (buffer-string) "\n" t) 0)))
+  (let ((freqs (mapcar
+                'string-to-number
+                (split-string (buffer-string) "\n" t))))
+    (print (apply '+ freqs))
+
+    ))
