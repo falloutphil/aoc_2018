@@ -4,21 +4,21 @@
 #include <boost/range/adaptors.hpp>
 #include <boost/range/algorithm/find.hpp>
 
-// hint: g++ 02.cpp -O2 -o cpp02
+// hint: g++ 02.cpp -O3 -o cpp02
 
 using namespace std;
 using namespace boost;
 
 int main()
 {
+    unsigned int twos = 0, threes = 0;
     ifstream ifs("input.txt", ifstream::in);
-    istream_iterator<string> input(ifs), eos;
     unordered_map<char,int> char_count;
-    unsigned int twos, threes = 0;
+    string line;
 
-    do
+    while(getline(ifs, line))
     {
-        for (const char c : *input)
+        for (const char c : line)
             // Increment count for each occurrence
             // of a char c in each line of the input
             ++char_count[c];
@@ -35,7 +35,6 @@ int main()
         // Delete counts to reuse for next line
         char_count.clear();
     }
-    while(++input != eos); // is next line end of stream?
 
     cout << twos*threes << endl;
 
