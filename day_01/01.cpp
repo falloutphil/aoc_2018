@@ -43,12 +43,13 @@ int main()
     vector<int> freqs;
     ifstream ifs("input.txt", ifstream::in);
     istream_iterator<int> input(ifs);
+    // to cycle we can't use the istream_iterator
+    // over an ifstream, as underlying ifstream can't
+    // be reset to start from inside the iterator.
     copy(input, istream_iterator<int>(),
          back_inserter(freqs));
 
-    int result = accumulate(begin(freqs),
-                            end(freqs),
-                            0, plus<int>());
+    int result = accumulate(begin(freqs), end(freqs), 0);
 
     cout << result << endl;
 
