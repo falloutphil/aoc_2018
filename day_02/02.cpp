@@ -61,10 +61,10 @@ int main()
     // permute bitmask
     do {
         // K=2 so there will always be a only a first and last
-        string& res1 = lines[bitmask.find_first_of(1)];
-        string& res2 = lines[bitmask.find_last_of(1)];
+        const string& res1 = lines[bitmask.find_first_of(1)];
+        const string& res2 = lines[bitmask.find_last_of(1)];
 
-        auto line_tuple = combine(res1, res2);
+        const auto line_tuple = combine(res1, res2);
         const int mismatches =
             count_if( line_tuple.begin(), line_tuple.end(),
                  [](const auto& lt)
