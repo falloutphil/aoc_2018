@@ -36,6 +36,6 @@
                                    (cdr (memq nil (mapcar* #'equal c1 c2)))) ; exactly one nil symbol
                             (throw 'break c)))))))
       (print (concat (mapcar #'car (cl-remove-if-not ; chars go to list of ascii ints, concat returns to string
-              (lambda (r) (equal (car r) (cdr r))) ; drop any mistmatches between c1 and c2
+              (lambda (r) (equal (car r) (cdr r))) ; drop any mismatches between c1 and c2
               (mapcar* #'cons (car result) (cdr result)))))) ; turn (abc.def) to ((a.d) (b.e) (c.f))
       )))
