@@ -28,14 +28,14 @@
     (print (* twos threes))
     ;; 2b
     (let ((result (catch 'break
-                    (dolist (c (combinations lines))
-                      (let ((c1 (car c))
-                            (c2 (cdr c)))
+                    (dolist (line (combinations lines))
+                      (let ((l1 (car line))
+                            (l2 (cdr line)))
                         ;; 'and' is a macro so use 'every'
-                        (if (every #'identity ; check for no further mismatches in chop
-                                   (cdr (memq nil (mapcar* #'equal c1 c2)))) ; chop at first mismatch
-                            (throw 'break c))))))) ; found it! break out and return 2 lines
-      (print (concat (mapcar #'car (cl-remove-if-not ; chars go to list of ascii ints, concat returns to string
-              (lambda (r) (equal (car r) (cdr r))) ; drop any (one) mismatches between c1 and c2
-              (mapcar* #'cons (car result) (cdr result)))))) ; turn (abc.def) to ((a.d) (b.e) (c.f))
-      )))
+                        (if (every 'identity ; check for no further mismatches in chop
+                                   (cdr (memq nil (mapcar* 'eq l1 l2)))) ; chop at first mismatch
+                            (throw 'break line))))))) ; found it! break out and return 2 lines
+      (print (cl-loop for l1 across (car result)
+                      for l2 across (cdr result)
+                      when (eq l1 l2)
+                      concat (string l1))))))
