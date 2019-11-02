@@ -2,19 +2,11 @@
 
 ;; Runs in ~0.03 secs
 
-(defun permutations (bag)
-  "Return a list of all the permutations of the input."
-  (if (null bag) '(())
-    ;; Otherwise, take an element, e, out of the bag.
-    ;; Generate all permutations of the remaining elements,
-    ;; And add e to the front of each of these.
-    ;; Do this for all possible e to generate all permutations.
-    (mapcan #'(lambda (e)
-                (mapcar (lambda (p) (cons e p))
-                        (permutations
-                         (remove e bag))))
-            bag)))
+(require 'cl)
 
+(defun combinations (l)
+  (cl-mapcon (lambda (x)
+               (mapcar (lambda (y) (cons (car x) y)) (cdr x))) l))
 
 (with-temp-buffer
   (insert-file-contents "input.txt")
@@ -26,13 +18,15 @@
         (twos 0)
         (threes 0))
     (dolist (line lines)
-      (mapcar (lambda (key) (puthash key (+ (gethash key myhash 0) 1) myhash)) line)
+      (mapc (lambda (key) (puthash key (+ (gethash key myhash 0) 1) myhash)) line)
       (let ((vals '()))
         (maphash (lambda (_ v) (push v vals)) myhash)
         (when (member 2 vals) (setq twos (+ twos 1)))
         (when (member 3 vals) (setq threes (+ threes 1)))
         (clrhash myhash)))
-    (print (* twos threes))))
-
-
-;;(print (permutations '(a b c)))
+    (print (* twos threes))
+    (dolist (c (combinations lines))
+      (let ((c1 (car c))
+            (c2 (cdr c)))
+        (if (not (member nil (cdr (member nil (mapcar* #'equal c1 c2))))) ; exactly one t
+            (print c))))))
