@@ -25,8 +25,12 @@
         (when (member 3 vals) (setq threes (+ threes 1)))
         (clrhash myhash)))
     (print (* twos threes))
-    (dolist (c (combinations lines))
-      (let ((c1 (car c))
-            (c2 (cdr c)))
-        (if (not (member nil (cdr (member nil (mapcar* #'equal c1 c2))))) ; exactly one t
-            (print c))))))
+    (let ((result (catch 'break
+                    (dolist (c (combinations lines))
+                      (let ((c1 (car c))
+                            (c2 (cdr c)))
+                        ;; 'and' is a macro so use 'every'
+                        (if (every #'identity
+                                   (cdr (memq nil (mapcar* #'equal c1 c2)))) ; exactly one nil symbol
+                            (throw 'break c)))))))
+      (print result))))
