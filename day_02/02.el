@@ -32,10 +32,10 @@
                       (let ((c1 (car c))
                             (c2 (cdr c)))
                         ;; 'and' is a macro so use 'every'
-                        (if (every #'identity
-                                   (cdr (memq nil (mapcar* #'equal c1 c2)))) ; exactly one nil symbol
+                        (if (every #'identity ; check for no further mismatches in chop
+                                   (cdr (memq nil (mapcar* #'equal c1 c2)))) ; chop at first mismatch
                             (throw 'break c))))))) ; found it! break out and return 2 lines
       (print (concat (mapcar #'car (cl-remove-if-not ; chars go to list of ascii ints, concat returns to string
-              (lambda (r) (equal (car r) (cdr r))) ; drop any mismatches between c1 and c2
+              (lambda (r) (equal (car r) (cdr r))) ; drop any (one) mismatches between c1 and c2
               (mapcar* #'cons (car result) (cdr result)))))) ; turn (abc.def) to ((a.d) (b.e) (c.f))
       )))
